@@ -1,4 +1,4 @@
-# pdate
+# pdate 📆
 
 Just a simple command line date printer
 

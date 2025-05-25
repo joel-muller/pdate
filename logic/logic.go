@@ -6,6 +6,15 @@ import (
 	"time"
 )
 
+func GetDates(args []string) ([]time.Time, error) {
+	dates, err := GetAllDates(args)
+	if err != nil {
+		return []time.Time{}, err
+	}
+	dates = RemoveWeekdays(args, dates)
+	return dates, nil
+}
+
 func GetAllDates(args []string) ([]time.Time, error) {
 	dates := parser.GetDates(args)
 	if len(dates) == 2 {
@@ -31,4 +40,24 @@ func GetDatesFromTo(from time.Time, to time.Time) []time.Time {
 		dates = append(dates, lower)
 	}
 	return dates
+}
+
+func RemoveWeekdays(args []string, allDates []time.Time) []time.Time {
+	weekdays := parser.ParseIgnore(args)
+	var dates []time.Time
+	for _, date := range allDates {
+		if IsNotInWeekdays(date, weekdays) {
+			dates = append(dates, date)
+		}
+	}
+	return dates
+}
+
+func IsNotInWeekdays(day time.Time, weekdays []time.Weekday) bool {
+	for _, weekday := range weekdays {
+		if day.Weekday() == weekday {
+			return false
+		}
+	}
+	return true
 }

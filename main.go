@@ -9,7 +9,7 @@ import (
 
 func main() {
 	argsWithoutProg := os.Args[1:]
-	dates, err := logic.GetAllDates(argsWithoutProg)
+	dates, err := logic.GetDates(argsWithoutProg)
 	if err != nil {
 		fmt.Println("Error could not print dates")
 	} else {
