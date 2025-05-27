@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-const (
-	IGNORE = "-i"
-)
-
 var strToWeekday = map[string]time.Weekday{
 	"mo": time.Monday,
 	"tu": time.Tuesday,
@@ -41,18 +37,9 @@ func GetDates(args []string) []time.Time {
 
 func ParseIgnore(args []string) []time.Weekday {
 	var days []time.Weekday
-	var index = -1
-	for i, arg := range args {
-		if arg == IGNORE {
-			index = i
-			break
-		}
-	}
-	if index == -1 {
-		return days
-	}
-	for i := index + 1; i < len(args); i++ {
-		day, exists := strToWeekday[args[i]]
+	var daysString = GetArgsForOptionInArgs(args, IGNORE)
+	for _, dayString := range daysString {
+		day, exists := strToWeekday[dayString]
 		if exists {
 			days = append(days, day)
 		} else {
