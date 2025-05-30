@@ -26,3 +26,4 @@ go.work.sum
 
 pdate
 *.idea
+coverage.out

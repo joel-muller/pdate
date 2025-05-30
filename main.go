@@ -3,16 +3,21 @@ package main
 import (
 	"fmt"
 	"os"
-	"pdate/logic"
-	"pdate/printer"
+	"pdate/internal"
 )
 
 func main() {
 	argsWithoutProg := os.Args[1:]
-	dates, err := logic.GetDates(argsWithoutProg)
+	if internal.NeedHelp(argsWithoutProg) {
+		fmt.Println(internal.PrintHelp())
+		return
+	}
+	dates, err := internal.GetDates(argsWithoutProg)
 	if err != nil {
-		fmt.Println("Error could not print dates")
-	} else {
-		printer.PrintDates(dates, "format")
+		fmt.Println(err)
+		return
+	}
+	for _, date := range dates {
+		fmt.Println(internal.DateFormatted(date, "Not yet implemented"))
 	}
 }
