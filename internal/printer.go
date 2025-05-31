@@ -6,23 +6,41 @@ import (
 	"time"
 )
 
-const (
-	YEAR  = "%Y"
-	MONTH = "%m"
-	DAY   = "%d"
-)
-
 const helpMessage = `Usage:
-  pdate <start_date> [end_date] [-i <days_to_exclude>] [-r]
+  pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
 
 Description:
-  Prints dates from the start_date up to end_date (or today if end_date is omitted).
+  Prints dates from <start-date> to <end-date> (or today if end-date is omitted).
+  You can optionally ignore specific weekdays, customize the date format, or reverse the order.
 
 Options:
-  <start_date>         Start date in YYYY-MM-DD format.
-  [end_date]           Optional end date in YYYY-MM-DD format.
-  -i <days_to_exclude> Exclude specified weekdays (e.g., mo, tu, fr).
+  <start-date>         Start of the date range (format: YYYY-MM-DD).
+  [end-date]           Optional end of the range (format: YYYY-MM-DD). Defaults to today.
+  -i <days>            Ignore specific weekdays using codes (e.g., mo tu fr).
+  -f <format>          Format each date using placeholders (see below).
   -r                   Print dates in reverse order.
+  -h, --help           Show this help message.
+
+Weekday Codes for -i:
+  mo  Monday
+  tu  Tuesday
+  we  Wednesday
+  th  Thursday
+  fr  Friday
+  sa  Saturday
+  su  Sunday
+
+Format Placeholders for -f:
+  {YYYY}  Full year (e.g., 2025)
+  {YY}    Last two digits of year (e.g., 25)
+  {MM}    Month with leading zero (e.g., 12)
+  {M}     Month without leading zero (e.g., 12)
+  {DD}    Day with leading zero (e.g., 07)
+  {D}     Day without leading zero (e.g., 7)
+  {MN}    Full month name (e.g., December)
+  {mn}    Abbreviated month name (e.g., Dec)
+  {WD}    Full weekday name (e.g., Sunday)
+  {wd}    Abbreviated weekday name (e.g., Sun)
 
 Examples:
   pdate 2025-10-02
@@ -36,6 +54,9 @@ Examples:
 
   pdate 2025-10-02 2025-11-30 -i mo tu fr sa su -r
     Prints dates excluding Mon, Tue, Fri, Sat, Sun in reverse order.
+
+  pdate 2025-10-02 2025-10-10 -f "{DD}.{MM}.{YYYY} ({wd})"
+    Prints formatted dates like 02.10.2025 (Thu)
 `
 
 func PrintHelp() string {

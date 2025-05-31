@@ -12,8 +12,8 @@ pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
 
 * `start-date`: The beginning of the date range (format: `YYYY-MM-DD`)
 * `end-date`: *(Optional)* The end of the date range (format: `YYYY-MM-DD`). If omitted, the range ends at **today's date**.
-* `-i <days>`: *(Optional)* Ignore specific weekdays. You can list one or more [weekday codes](link) after `-i`.
-* `-f <format>`: *(Optional)* Format the date in a provided [format](link) in a string
+* `-i <days>`: *(Optional)* Ignore specific weekdays. You can list one or more weekday codes after `-i`. 
+* `-f <format>`: *(Optional)* Format the date in a provided format (listed after `-i` between two `""`) in a string (see bellow)
 * `-r`: *(Optional)* Print the resulting list of dates in reverse order.
 * `-h` or `--help`: Display help information about `pdate`
 
