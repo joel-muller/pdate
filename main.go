@@ -18,6 +18,6 @@ func main() {
 		return
 	}
 	for _, date := range dates {
-		fmt.Println(internal.DateFormatted(date, "Not yet implemented"))
+		fmt.Println(date)
 	}
 }

@@ -15,20 +15,20 @@ func NeedHelp(args []string) bool {
 	return false
 }
 
-func GetDates(args []string) ([]time.Time, error) {
+func GetDates(args []string) ([]string, error) {
 	sorted, sortedErr := SortArguments(args)
 	if sortedErr != nil {
-		return []time.Time{}, fmt.Errorf("error while parsing the command %v", sortedErr)
+		return []string{}, fmt.Errorf("error while parsing the command %v", sortedErr)
 	}
 	dates, datesError := GetAllDates(sorted[DATE])
 	if datesError != nil {
-		return []time.Time{}, fmt.Errorf("error while parsing dates %v", datesError)
+		return []string{}, fmt.Errorf("error while parsing dates %v", datesError)
 	}
 	ignore, hasIgnore := sorted[IGNORE]
 	if hasIgnore {
 		weekdays, ignoreError := ParseWeekdays(ignore)
 		if ignoreError != nil {
-			return []time.Time{}, fmt.Errorf("error while parsing the ignored data %v", ignoreError)
+			return []string{}, fmt.Errorf("error while parsing the ignored data %v", ignoreError)
 		}
 		ignoredDates := RemoveWeekdays(weekdays, dates)
 		dates = ignoredDates
@@ -36,11 +36,19 @@ func GetDates(args []string) ([]time.Time, error) {
 	reverse, hasReverse := sorted[REVERSE]
 	if hasReverse {
 		if len(reverse) != 0 {
-			return []time.Time{}, fmt.Errorf("error while parsing the ignored data, -r doesn't have arguments")
+			return []string{}, fmt.Errorf("error while parsing the ignored data, -r doesn't have arguments")
 		}
 		dates = Reverse(dates)
 	}
-	return dates, nil
+	format := ""
+	formats, hasFormat := sorted[FORMAT]
+	if hasFormat {
+		if len(formats) != 1 {
+			return []string{}, fmt.Errorf("error while parsing the format, -f does have one argument")
+		}
+		format = formats[0]
+	}
+	return GetFormattedDates(dates, format), nil
 }
 
 func GetAllDates(args []string) ([]time.Time, error) {

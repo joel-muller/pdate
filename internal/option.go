@@ -9,12 +9,14 @@ type option int
 const (
 	IGNORE option = iota
 	REVERSE
+	FORMAT
 	DATE
 )
 
 var OptionKeyWords = map[string]option{
 	"-i": IGNORE,
 	"-r": REVERSE,
+	"-f": FORMAT,
 }
 
 func SortArguments(args []string) (map[option][]string, error) {

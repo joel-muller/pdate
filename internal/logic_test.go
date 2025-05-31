@@ -50,6 +50,18 @@ func TestGetDates(t *testing.T) {
 			lengthDates: 0,
 			err:         errors.New("error while parsing the command found unknown argument"),
 		},
+		{
+			name:        "more than one argument for format",
+			args:        []string{"2020-04-03", "-f", "some format", "some second format"},
+			lengthDates: 0,
+			err:         errors.New("error while parsing the format, -f does have one argument"),
+		},
+		{
+			name:        "some valid format",
+			args:        []string{"2020-04-03", "2010-04-03", "-f", "some format"},
+			lengthDates: 3654,
+			err:         nil,
+		},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {

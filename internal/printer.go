@@ -1,6 +1,8 @@
 package internal
 
 import (
+	"fmt"
+	"strings"
 	"time"
 )
 
@@ -40,7 +42,33 @@ func PrintHelp() string {
 	return helpMessage
 }
 
-// DateFormatted Default, will change later
 func DateFormatted(date time.Time, format string) string {
-	return date.Format("02.01.2006")
+	if len(format) > 0 {
+		return ReplaceDatePlaceholdersWithDate(format, date)
+	}
+	return date.Format("2006-01-02")
+}
+
+func GetFormattedDates(dates []time.Time, format string) []string {
+	var formattedDates []string
+	for _, date := range dates {
+		formattedDates = append(formattedDates, DateFormatted(date, format))
+	}
+	return formattedDates
+}
+
+func ReplaceDatePlaceholdersWithDate(input string, date time.Time) string {
+	replacer := strings.NewReplacer(
+		"{YYYY}", fmt.Sprintf("%04d", date.Year()),
+		"{YY}", fmt.Sprintf("%02d", date.Year()%100),
+		"{MM}", fmt.Sprintf("%02d", int(date.Month())),
+		"{DD}", fmt.Sprintf("%02d", date.Day()),
+		"{WD}", date.Weekday().String(),
+		"{wd}", date.Weekday().String()[:3],
+		"{MN}", date.Month().String(),
+		"{mn}", date.Month().String()[:3],
+		"{M}", fmt.Sprintf("%d", int(date.Month())),
+		"{D}", fmt.Sprintf("%d", date.Day()),
+	)
+	return replacer.Replace(input)
 }
