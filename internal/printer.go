@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+const version = "1.2.0"
+
 const helpMessage = `Usage:
   pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
 
@@ -20,6 +22,7 @@ Options:
   -f <format>          Format each date using placeholders (see below).
   -r                   Print dates in reverse order.
   -h, --help           Show this help message.
+  -v, --version        Show version
 
 Weekday Codes for -i:
   mo  Monday
@@ -61,6 +64,10 @@ Examples:
 
 func PrintHelp() string {
 	return helpMessage
+}
+
+func PrintVersion() string {
+	return version
 }
 
 func DateFormatted(date time.Time, format string) string {

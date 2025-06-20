@@ -12,6 +12,10 @@ func main() {
 		fmt.Println(internal.PrintHelp())
 		return
 	}
+	if internal.NeedVersion(argsWithoutProg) {
+		fmt.Println(internal.PrintVersion())
+		return
+	}
 	dates, err := internal.GetDates(argsWithoutProg)
 	if err != nil {
 		fmt.Println(err)

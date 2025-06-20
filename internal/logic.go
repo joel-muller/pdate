@@ -15,6 +15,15 @@ func NeedHelp(args []string) bool {
 	return false
 }
 
+func NeedVersion(args []string) bool {
+	for _, i := range args {
+		if i == "-v" || i == "--version" {
+			return true
+		}
+	}
+	return false
+}
+
 func GetDates(args []string) ([]string, error) {
 	sorted, sortedErr := SortArguments(args)
 	if sortedErr != nil {

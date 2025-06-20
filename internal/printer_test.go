@@ -12,6 +12,15 @@ func TestPrintHelp(t *testing.T) {
 		t.Errorf("PrintHelp() = %q; want %q", got, want)
 	}
 }
+
+func TestPrintVersion(t *testing.T) {
+	got := PrintVersion()
+	want := version
+	if got != want {
+		t.Errorf("PrintVersion() = %q; want %q", got, want)
+	}
+}
+
 func TestDateFormatted(t *testing.T) {
 	date := time.Date(2025, time.March, 5, 0, 0, 0, 0, time.UTC)
 

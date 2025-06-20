@@ -90,7 +90,7 @@ pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
    <details><summary>Optional: Check checksum</summary>
 
    ```bash
-   sha256sum -c pdate_1.1.0_checksums.txt
+   sha256sum -c pdate_<version>_checksums.txt
    ```
 
    </details>
@@ -98,7 +98,7 @@ pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
 2. Extract it:
 
    ```bash
-   tar -xzf pdate_1.1.0_linux_amd64.tar.gz
+   tar -xzf pdate_<version>_linux_amd64.tar.gz
    ```
 
 3. Move it to your system path and make it executable:
@@ -115,12 +115,12 @@ pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
 
 ### macOS
 
-1. Download the archive (e.g. `pdate_1.1.0_darwin_arm64.tar.gz`)
+1. Download the archive (e.g. `pdate_<version>_darwin_arm64.tar.gz`)
 
    <details><summary>Optional: Check checksum</summary>
 
    ```bash
-   shasum -a 256 -c pdate_1.1.0_checksums.txt
+   shasum -a 256 -c pdate_<version>_checksums.txt
    ```
 
    </details>
@@ -128,7 +128,7 @@ pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
 2. Extract it:
 
    ```bash
-   tar -xzf pdate_1.1.0_darwin_arm64.tar.gz
+   tar -xzf pdate_<version>_darwin_arm64.tar.gz
    ```
 
 3. Move it to your system path:

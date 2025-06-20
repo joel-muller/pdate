@@ -403,3 +403,50 @@ func TestNeedHelp(t *testing.T) {
 		})
 	}
 }
+func TestNeedVersion(t *testing.T) {
+	tests := []struct {
+		name string
+		args []string
+		want bool
+	}{
+		{
+			name: "Contains version",
+			args: []string{"foo", "bar", "-v"},
+			want: true,
+		},
+		{
+			name: "version only",
+			args: []string{"--version"},
+			want: true,
+		},
+		{
+			name: "No version",
+			args: []string{"foo", "bar"},
+			want: false,
+		},
+		{
+			name: "Empty args",
+			args: []string{},
+			want: false,
+		},
+		{
+			name: "Multiple versions",
+			args: []string{"--version", "--version"},
+			want: true,
+		},
+		{
+			name: "Help as substring",
+			args: []string{"helper", "versionful"},
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := NeedVersion(tt.args)
+			if got != tt.want {
+				t.Errorf("NeedHelp(%v) = %v; want %v", tt.args, got, tt.want)
+			}
+		})
+	}
+}
