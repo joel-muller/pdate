@@ -193,6 +193,64 @@ func TestParseFormat(t *testing.T) {
 	}
 }
 
+func TestParseLanguage(t *testing.T) {
+	tests := []struct {
+		name         string
+		args         []string
+		initialJob   job.Job
+		wantLanguage job.Language
+		wantErr      error
+	}{
+		{
+			name:         "No arguments - returns error",
+			args:         []string{},
+			initialJob:   job.Job{},
+			wantLanguage: job.English,
+			wantErr:      errors.New("wrong number language args given"),
+		},
+		{
+			name:         "Multiple arguments - returns error",
+			args:         []string{"args", "extra"},
+			initialJob:   job.Job{},
+			wantLanguage: job.English,
+			wantErr:      errors.New("wrong number language args given"),
+		},
+		{
+			name:         "Single valid format",
+			args:         []string{"de"},
+			initialJob:   job.Job{},
+			wantLanguage: job.German,
+			wantErr:      nil,
+		},
+		{
+			name:         "Single valid format with different string",
+			args:         []string{"cc"},
+			initialJob:   job.Job{},
+			wantLanguage: job.English,
+			wantErr:      errors.New("unknown language detected"),
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			j := tt.initialJob
+			err := ParseLanguage(tt.args, &j)
+
+			if tt.wantErr != nil {
+				if err == nil || err.Error() != tt.wantErr.Error() {
+					t.Errorf("expected error %v, got %v", tt.wantErr, err)
+				}
+			} else if err != nil {
+				t.Errorf("unexpected error: %v", err)
+			}
+
+			if j.Language != tt.wantLanguage {
+				t.Errorf("expected Format to be %q, got %q", tt.wantLanguage, j.Language)
+			}
+		})
+	}
+}
+
 func TestParseIgnore(t *testing.T) {
 	tests := []struct {
 		name         string

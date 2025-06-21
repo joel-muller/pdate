@@ -1,6 +1,7 @@
 package dates
 
 import (
+	"pdate/internal/job"
 	"testing"
 	"time"
 )
@@ -13,7 +14,7 @@ func TestFormatDates(t *testing.T) {
 	format := "{YY}-{mn}-{D}"
 
 	expected := []string{"25-Jan-1", "25-Dec-31"}
-	result := FormatDates(dates, format)
+	result := FormatDates(dates, format, job.English)
 
 	for i := range expected {
 		if result[i] != expected[i] {
@@ -39,7 +40,7 @@ func TestReplaceDatePlaceholdersWithDate(t *testing.T) {
 	}
 
 	for placeholder, expected := range tests {
-		result := ReplaceDatePlaceholdersWithDate(placeholder, date)
+		result := ReplaceDatePlaceholdersWithDate(placeholder, date, job.English)
 		if result != expected {
 			t.Errorf("Placeholder %s: expected %s, got %s", placeholder, expected, result)
 		}
@@ -48,7 +49,7 @@ func TestReplaceDatePlaceholdersWithDate(t *testing.T) {
 	t.Run("Full custom string", func(t *testing.T) {
 		format := "Today is {WD}, {MN} {D}, {YYYY}"
 		expected := "Today is Wednesday, March 5, 2025"
-		result := ReplaceDatePlaceholdersWithDate(format, date)
+		result := ReplaceDatePlaceholdersWithDate(format, date, job.English)
 		if result != expected {
 			t.Errorf("Expected %s, got %s", expected, result)
 		}

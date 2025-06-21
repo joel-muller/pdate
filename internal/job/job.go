@@ -14,6 +14,23 @@ const (
 	Option
 )
 
+type Language int
+
+const (
+	English Language = iota
+	Spanish
+	French
+	German
+	Swiss
+	Italian
+	Portuguese
+	Dutch
+	Russian
+	Chinese
+	Arabic
+	Hindi
+)
+
 type Job struct {
 	DatesInput      []time.Time
 	PosArguments    []Argument
@@ -22,6 +39,7 @@ type Job struct {
 	Format          string
 	Version         bool
 	Help            bool
+	Language        Language
 }
 
 func New() *Job {
@@ -33,6 +51,7 @@ func New() *Job {
 		constants.DefaultInputFormat,
 		false,
 		false,
+		English,
 	}
 }
 

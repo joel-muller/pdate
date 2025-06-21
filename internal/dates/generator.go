@@ -18,7 +18,7 @@ func GetDates(j *job.Job) []string {
 	if j.Reversed {
 		ignoredWeekdays = ReverseOrder(ignoredWeekdays)
 	}
-	return FormatDates(ignoredWeekdays, j.Format)
+	return FormatDates(ignoredWeekdays, j.Format, j.Language)
 }
 
 func GetAllDates(dates []time.Time) []time.Time {

@@ -7,7 +7,7 @@
 ## Usage
 
 ```bash
-pdate [-i <days-to-ignore>] [-f <format>] [-r] [start-date] [end-date]
+pdate [-i <days-to-ignore>] [-f <format>] [-r] [-l <language>] [start-date] [end-date]
 ```
 
 * `start-date`: The beginning of the date range (format: `YYYY-MM-DD`)
@@ -15,6 +15,7 @@ pdate [-i <days-to-ignore>] [-f <format>] [-r] [start-date] [end-date]
 * `-i <days>`: *(Optional)* Ignore specific weekdays. You can list one or more weekday codes after `-i`. 
 * `-f <format>`: *(Optional)* Format the date in a provided format (listed after `-i` between two `""`) in a string (see bellow)
 * `-r`: *(Optional)* Print the resulting list of dates in reverse order.
+* `-l <language>`: *(Optional)* Print the format in the desired language, default language is english
 * `-h` or `--help`: Display help information about `pdate`
 * `-v` or `--version`: Display the version of `pdate`
 
@@ -48,6 +49,25 @@ Use the `-f` flag with these placeholders to customize date output:
 | `{mn}`      | Abbreviated month name            | `Dec`                  |
 | `{WD}`      | Full weekday name                 | `Sunday`               |
 | `{wd}`      | Abbreviated weekday name          | `Sun`                  |
+
+### Language Codes
+
+Use these short country codes for the `-l` flag and `{MN}`, `{mn}`, `{WD}` and `{wd}` is parsed in the desired language
+
+| Code | Language        |
+|------|-----------------|
+| `en` | 🇬🇧 English    |
+| `fr` | 🇫🇷 French     |
+| `es` | 🇪🇸 Spanish    |
+| `de` | 🇩🇪 German     |
+| `ch` | 🇨🇭 Swiss      |
+| `it` | 🇮🇹 Italian    |
+| `pt` | 🇵🇹 Portuguese |
+| `nl` | 🇳🇱 Dutch      |
+| `ru` | 🇷🇺 Russian    |
+| `zh` | 🇨🇳 Chinese    |
+| `ar` | 🇸🇦 Arabic     |
+| `hi` | 🇮🇳 Hindi      |
 
 ### Example Commands
 

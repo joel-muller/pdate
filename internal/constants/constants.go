@@ -7,7 +7,7 @@ const DefaultInputFormat = "{YYYY}-{MM}-{DD}"
 const ParseLayoutDate = "2006-1-2"
 
 const HelpMessage = `Usage:
-  pdate [-i <days-to-ignore>] [-f <format>] [-r] [start-date] [end-date]
+  pdate [-i <days-to-ignore>] [-f <format>] [-r] [-l <language>] [start-date] [end-date]
 
 Description:
   Prints dates from <start-date> to <end-date> (or today if end-date is omitted).
@@ -19,6 +19,7 @@ Options:
   -i <days>            Ignore specific weekdays using codes (e.g., mo tu fr).
   -f <format>          Format each date using placeholders (see below).
   -r                   Print dates in reverse order.
+  -l <language>        Print the format in the desired language, default language is english
   -h, --help           Show this help message.
   -v, --version        Show version
 
@@ -42,6 +43,20 @@ Format Placeholders for -f:
   {mn}    Abbreviated month name (e.g., Dec)
   {WD}    Full weekday name (e.g., Sunday)
   {wd}    Abbreviated weekday name (e.g., Sun)
+
+Language Codes for -l:
+  en  English
+  fr  French
+  es  Spanish
+  de  German
+  ch  Swiss
+  it  Italian
+  pt  Portuguese
+  nl  Dutch
+  ru  Russian
+  zh  Chinese
+  ar  Arabic
+  hi  Hindi
 
 Examples:
   pdate 2025-10-02

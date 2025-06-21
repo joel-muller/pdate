@@ -19,6 +19,7 @@ const (
 	Ignore flag = iota
 	Reverse
 	Format
+	Language
 	Version
 	Help
 	Invalid
@@ -28,6 +29,7 @@ var strToOption = map[string]flag{
 	"-i":        Ignore,
 	"-r":        Reverse,
 	"-f":        Format,
+	"-l":        Language,
 	"-v":        Version,
 	"--version": Version,
 	"-h":        Help,
@@ -35,12 +37,13 @@ var strToOption = map[string]flag{
 }
 
 var optionToJobFunc = map[flag]func([]string, *job.Job) error{
-	Ignore:  ParseIgnore,
-	Reverse: ParseReverse,
-	Format:  ParseFormat,
-	Version: ParseVersion,
-	Help:    ParseHelp,
-	Invalid: ParseInvalid,
+	Ignore:   ParseIgnore,
+	Reverse:  ParseReverse,
+	Format:   ParseFormat,
+	Language: ParseLanguage,
+	Version:  ParseVersion,
+	Help:     ParseHelp,
+	Invalid:  ParseInvalid,
 }
 
 var strToWeekday = map[string]time.Weekday{
@@ -51,6 +54,21 @@ var strToWeekday = map[string]time.Weekday{
 	"fr": time.Friday,
 	"sa": time.Saturday,
 	"su": time.Sunday,
+}
+
+var strToLanguage = map[string]job.Language{
+	"en": job.English,
+	"fr": job.French,
+	"es": job.Spanish,
+	"de": job.German,
+	"ch": job.Swiss,
+	"it": job.Italian,
+	"pt": job.Portuguese,
+	"nl": job.Dutch,
+	"ru": job.Russian,
+	"zh": job.Chinese,
+	"ar": job.Arabic,
+	"hi": job.Hindi,
 }
 
 func Parse(args []string, job *job.Job) error {
@@ -113,6 +131,18 @@ func ParseReverse(args []string, job *job.Job) error {
 		return errors.New("reverse flag doesn't have arguments")
 	}
 	job.Reversed = true
+	return nil
+}
+
+func ParseLanguage(args []string, job *job.Job) error {
+	if len(args) != 1 {
+		return errors.New("wrong number language args given")
+	}
+	lan, found := strToLanguage[args[0]]
+	if !found {
+		return errors.New("unknown language detected")
+	}
+	job.Language = lan
 	return nil
 }
 
