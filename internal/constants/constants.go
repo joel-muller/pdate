@@ -1,22 +1,20 @@
-package internal
+package constants
 
-import (
-	"fmt"
-	"strings"
-	"time"
-)
+const Version = "1.2.0"
 
-const version = "1.2.0"
+const DefaultInputFormat = "{YYYY}-{MM}-{DD}"
 
-const helpMessage = `Usage:
-  pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
+const ParseLayoutDate = "2006-1-2"
+
+const HelpMessage = `Usage:
+  pdate [-i <days-to-ignore>] [-f <format>] [-r] [start-date] [end-date]
 
 Description:
   Prints dates from <start-date> to <end-date> (or today if end-date is omitted).
   You can optionally ignore specific weekdays, customize the date format, or reverse the order.
 
 Options:
-  <start-date>         Start of the date range (format: YYYY-MM-DD).
+  [start-date]         Start of the date range (format: YYYY-MM-DD).
   [end-date]           Optional end of the range (format: YYYY-MM-DD). Defaults to today.
   -i <days>            Ignore specific weekdays using codes (e.g., mo tu fr).
   -f <format>          Format each date using placeholders (see below).
@@ -52,51 +50,12 @@ Examples:
   pdate 2025-10-02 2025-11-30
     Prints all dates from October 2 to November 30, 2025.
 
-  pdate 2025-10-02 2025-11-30 -i mo tu
+  pdate -i mo tu 2025-10-02 2025-11-30
     Prints dates excluding Mondays and Tuesdays.
 
-  pdate 2025-10-02 2025-11-30 -i mo tu fr sa su -r
+  pdate -i mo tu fr sa su -r 2025-10-02 2025-11-30
     Prints dates excluding Mon, Tue, Fri, Sat, Sun in reverse order.
 
-  pdate 2025-10-02 2025-10-10 -f "{DD}.{MM}.{YYYY} ({wd})"
+  pdate -f "{DD}.{MM}.{YYYY} ({wd})" 2025-10-02 2025-10-10
     Prints formatted dates like 02.10.2025 (Thu)
 `
-
-func PrintHelp() string {
-	return helpMessage
-}
-
-func PrintVersion() string {
-	return version
-}
-
-func DateFormatted(date time.Time, format string) string {
-	if len(format) > 0 {
-		return ReplaceDatePlaceholdersWithDate(format, date)
-	}
-	return date.Format("2006-01-02")
-}
-
-func GetFormattedDates(dates []time.Time, format string) []string {
-	var formattedDates []string
-	for _, date := range dates {
-		formattedDates = append(formattedDates, DateFormatted(date, format))
-	}
-	return formattedDates
-}
-
-func ReplaceDatePlaceholdersWithDate(input string, date time.Time) string {
-	replacer := strings.NewReplacer(
-		"{YYYY}", fmt.Sprintf("%04d", date.Year()),
-		"{YY}", fmt.Sprintf("%02d", date.Year()%100),
-		"{MM}", fmt.Sprintf("%02d", int(date.Month())),
-		"{DD}", fmt.Sprintf("%02d", date.Day()),
-		"{WD}", date.Weekday().String(),
-		"{wd}", date.Weekday().String()[:3],
-		"{MN}", date.Month().String(),
-		"{mn}", date.Month().String()[:3],
-		"{M}", fmt.Sprintf("%d", int(date.Month())),
-		"{D}", fmt.Sprintf("%d", date.Day()),
-	)
-	return replacer.Replace(input)
-}

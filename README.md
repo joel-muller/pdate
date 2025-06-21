@@ -7,7 +7,7 @@
 ## Usage
 
 ```bash
-pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
+pdate [-i <days-to-ignore>] [-f <format>] [-r] [start-date] [end-date]
 ```
 
 * `start-date`: The beginning of the date range (format: `YYYY-MM-DD`)
@@ -16,7 +16,7 @@ pdate <start-date> [end-date] [-i <days-to-ignore>] [-f <format>] [-r]
 * `-f <format>`: *(Optional)* Format the date in a provided format (listed after `-i` between two `""`) in a string (see bellow)
 * `-r`: *(Optional)* Print the resulting list of dates in reverse order.
 * `-h` or `--help`: Display help information about `pdate`
-
+* `-v` or `--version`: Display the version of `pdate`
 
 ### Weekday Codes
 
@@ -64,19 +64,13 @@ pdate 2025-10-02 2025-11-30
 > Prints all dates from October 2 to November 30, 2025.
 
 ```bash
-pdate 2025-10-02 2025-11-30 -i mo tu
-```
-
-> Prints all dates from October 2 to November 30, 2025, **excluding Mondays and Tuesdays**.
-
-```bash
-pdate 2025-10-02 2025-11-30 -i mo tu fr sa su -r
+pdate -i mo tu fr sa su -r 2025-10-02 2025-11-30
 ```
 
 > Prints dates from the same range, **excluding Mon, Tue, Fri, Sat, Sun**, and prints them in **reverse order**.
 
 ```bash
-pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
+pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 ```
 
 > Prints dates in a custom format, e.g., `2025-10-02 (Thursday)`.
@@ -85,7 +79,7 @@ pdate 2025-10-02 2025-11-05 -f "{YYYY}-{MM}-{DD} ({WD})"
 
 ### Linux
 
-1. Download the archive (e.g. `pdate_1.1.0_linux_amd64.tar.gz`)
+1. Download the archive (e.g. `pdate_<version>_linux_amd64.tar.gz`)
 
    <details><summary>Optional: Check checksum</summary>
 

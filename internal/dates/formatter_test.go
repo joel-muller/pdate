@@ -1,48 +1,11 @@
-package internal
+package dates
 
 import (
 	"testing"
 	"time"
 )
 
-func TestPrintHelp(t *testing.T) {
-	got := PrintHelp()
-	want := helpMessage
-	if got != want {
-		t.Errorf("PrintHelp() = %q; want %q", got, want)
-	}
-}
-
-func TestPrintVersion(t *testing.T) {
-	got := PrintVersion()
-	want := version
-	if got != want {
-		t.Errorf("PrintVersion() = %q; want %q", got, want)
-	}
-}
-
-func TestDateFormatted(t *testing.T) {
-	date := time.Date(2025, time.March, 5, 0, 0, 0, 0, time.UTC)
-
-	t.Run("Default format", func(t *testing.T) {
-		expected := "2025-03-05"
-		result := DateFormatted(date, "")
-		if result != expected {
-			t.Errorf("Expected %s, got %s", expected, result)
-		}
-	})
-
-	t.Run("Custom format", func(t *testing.T) {
-		format := "{YYYY}/{MM}/{DD}"
-		expected := "2025/03/05"
-		result := DateFormatted(date, format)
-		if result != expected {
-			t.Errorf("Expected %s, got %s", expected, result)
-		}
-	})
-}
-
-func TestGetFormattedDates(t *testing.T) {
+func TestFormatDates(t *testing.T) {
 	dates := []time.Time{
 		time.Date(2025, time.January, 1, 0, 0, 0, 0, time.UTC),
 		time.Date(2025, time.December, 31, 0, 0, 0, 0, time.UTC),
@@ -50,7 +13,7 @@ func TestGetFormattedDates(t *testing.T) {
 	format := "{YY}-{mn}-{D}"
 
 	expected := []string{"25-Jan-1", "25-Dec-31"}
-	result := GetFormattedDates(dates, format)
+	result := FormatDates(dates, format)
 
 	for i := range expected {
 		if result[i] != expected[i] {
