@@ -7,6 +7,6 @@ echo "Run the tests"
 go test ./...
 
 echo "Build the binary"
-go build -o pdate ./cmd/pdate
+go build
 
 echo "Done"

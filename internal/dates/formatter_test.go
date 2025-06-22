@@ -55,3 +55,64 @@ func TestReplaceDatePlaceholdersWithDate(t *testing.T) {
 		}
 	})
 }
+
+func TestGetShortFormName(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    string
+		lang     job.Language
+		expected string
+	}{
+		{
+			name:     "English short form",
+			input:    "Monday",
+			lang:     job.English,
+			expected: "Mon",
+		},
+		{
+			name:     "German short form",
+			input:    "Dienstag",
+			lang:     job.German,
+			expected: "Die",
+		},
+		{
+			name:     "Spanish short form",
+			input:    "Martes",
+			lang:     job.Spanish,
+			expected: "Mar",
+		},
+		{
+			name:     "Dutch short form",
+			input:    "Woensdag",
+			lang:     job.Dutch,
+			expected: "Woe",
+		},
+		{
+			name:     "Hindi no short form",
+			input:    "सोमवार",
+			lang:     job.Hindi,
+			expected: "सोमवार",
+		},
+		{
+			name:     "Chinese no short form",
+			input:    "星期一",
+			lang:     job.Chinese,
+			expected: "星期一",
+		},
+		{
+			name:     "Short input string",
+			input:    "Lundi",
+			lang:     job.French,
+			expected: "Lun",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := GetShortFormName(tt.input, tt.lang)
+			if result != tt.expected {
+				t.Errorf("GetShortFormName(%q, %v) = %q; want %q", tt.input, tt.lang, result, tt.expected)
+			}
+		})
+	}
+}

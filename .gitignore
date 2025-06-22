@@ -26,9 +26,4 @@ go.work.sum
 
 *.idea
 coverage.out
-
-# pdate binary
-/pdate
-
-# pdate directory should be staged
-!pdate/
+pdate
