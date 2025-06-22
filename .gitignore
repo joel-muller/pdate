@@ -24,6 +24,11 @@ go.work.sum
 # env file
 .env
 
-pdate
 *.idea
 coverage.out
+
+# pdate binary
+/pdate
+
+# pdate directory should be staged
+!pdate/
