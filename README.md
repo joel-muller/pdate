@@ -124,7 +124,7 @@ pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 4. Run it:
 
    ```bash
-   pdate 2025-10-02
+   pdate
    ```
 
 ### macOS
@@ -154,7 +154,7 @@ pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 4. Run it:
 
    ```bash
-   pdate 2025-10-02
+   pdate
    ```
 
 > [!WARNING]
