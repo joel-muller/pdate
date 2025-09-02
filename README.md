@@ -2,7 +2,7 @@
 
 `pdate` is a command-line utility that prints a range of dates between two specified days. It supports options to ignore specific weekdays and to reverse the output order.
 
-[![Go](https://github.com/joel-muller/pdate/actions/workflows/go.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/go.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
+[![Go](https://github.com/joel-muller/pdate/actions/workflows/build.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/build.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
 
 ## Usage
 
@@ -124,7 +124,7 @@ pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 4. Run it:
 
    ```bash
-   pdate 2025-10-02
+   pdate
    ```
 
 ### macOS
@@ -154,7 +154,7 @@ pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 4. Run it:
 
    ```bash
-   pdate 2025-10-02
+   pdate
    ```
 
 > [!WARNING]
