@@ -2,7 +2,7 @@
 
 `pdate` is a command-line utility that prints a range of dates between two specified days. It supports options to ignore specific weekdays and to reverse the output order.
 
-[![Go](https://github.com/joel-muller/pdate/actions/workflows/go.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/go.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
+[![Go](https://github.com/joel-muller/pdate/actions/workflows/build.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/build.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
 
 ## Usage
 
