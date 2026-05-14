@@ -4,6 +4,20 @@
 
 [![Go](https://github.com/joel-muller/pdate/actions/workflows/build.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/build.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
 
+## Installation
+
+### Homebrew
+
+If you use Homebrew, you can install the app via the official cask:
+
+```bash
+brew install --cask joel-muller/tap/pdate
+```
+
+### Other platforms
+
+For all other devices, download the latest version from the [pdate releases page](https://github.com/joel-muller/pdate/releases)
+
 ## Usage
 
 ```bash
@@ -94,73 +108,3 @@ pdate -f "{YYYY}-{MM}-{DD} ({WD})" 2025-10-02 2025-11-05
 ```
 
 > Prints dates in a custom format, e.g., `2025-10-02 (Thursday)`.
-
-## Installation
-
-### Linux
-
-1. Download the archive (e.g. `pdate_<version>_linux_amd64.tar.gz`)
-
-   <details><summary>Optional: Check checksum</summary>
-
-   ```bash
-   sha256sum -c pdate_<version>_checksums.txt
-   ```
-
-   </details>
-
-2. Extract it:
-
-   ```bash
-   tar -xzf pdate_<version>_linux_amd64.tar.gz
-   ```
-
-3. Move it to your system path and make it executable:
-
-   ```bash
-   sudo mv pdate /usr/local/bin/
-   ```
-
-4. Run it:
-
-   ```bash
-   pdate
-   ```
-
-### macOS
-
-1. Download the archive (e.g. `pdate_<version>_darwin_arm64.tar.gz`)
-
-   <details><summary>Optional: Check checksum</summary>
-
-   ```bash
-   shasum -a 256 -c pdate_<version>_checksums.txt
-   ```
-
-   </details>
-
-2. Extract it:
-
-   ```bash
-   tar -xzf pdate_<version>_darwin_arm64.tar.gz
-   ```
-
-3. Move it to your system path:
-
-   ```bash
-   sudo mv pdate /usr/local/bin/
-   ```
-
-4. Run it:
-
-   ```bash
-   pdate
-   ```
-
-> [!WARNING]
-> On macOS, you might need to allow the app to run the first time:
-> Go to System Settings → Privacy & Security → Security and click “Allow Anyway” if macOS blocks the binary.
-
-### Windows
-
-I don’t personally use Windows, but a Windows binary is available. If you know how to install and run `pdate` on Windows, please feel free to update this section and submit a pull request. Contributions are always welcome!
