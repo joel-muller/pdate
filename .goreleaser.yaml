@@ -1,0 +1,19 @@
+homebrew_casks:
+  - name: pdate
+    description: "Cli tool to print sequence of dates"
+    homepage: "https://github.com/joel-muller/pdate"
+    license: "MIT"
+    directory: Casks
+
+    repository:
+      owner: joel-muller
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/foo"]
+          end
