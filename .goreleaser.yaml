@@ -1,7 +1,7 @@
 homebrew_casks:
   - name: pdate
     description: "Cli tool to print sequence of dates"
-    homepage: "https://github.com/joel-muller/pdate"
+    homepage: "https://github.com/mullerjoel/pdate"
     license: "MIT"
     directory: Casks
 

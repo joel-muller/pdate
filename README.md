@@ -2,7 +2,7 @@
 
 `pdate` is a command-line utility that prints a range of dates between two specified days. It supports options to ignore specific weekdays and to reverse the output order.
 
-[![Go](https://github.com/joel-muller/pdate/actions/workflows/build.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/build.yml) [![goreleaser](https://github.com/joel-muller/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/joel-muller/pdate/actions/workflows/release.yml)
+[![Go](https://github.com/mullerjoel/pdate/actions/workflows/build.yml/badge.svg)](https://github.com/mullerjoel/pdate/actions/workflows/build.yml) [![goreleaser](https://github.com/mullerjoel/pdate/actions/workflows/release.yml/badge.svg)](https://github.com/mullerjoel/pdate/actions/workflows/release.yml)
 
 ## Installation
 
@@ -11,12 +11,12 @@
 If you use Homebrew, you can install the app via the official cask:
 
 ```bash
-brew install --cask joel-muller/tap/pdate
+brew install --cask mullerjoel/tap/pdate
 ```
 
 ### Other platforms
 
-For all other devices, download the latest version from the [pdate releases page](https://github.com/joel-muller/pdate/releases)
+For all other devices, download the latest version from the [pdate releases page](https://github.com/mullerjoel/pdate/releases)
 
 ## Usage
 
